@@ -1,4 +1,5 @@
 import json
+import sys
 import requests
 from typing import Dict, Any
 from urllib.parse import urlparse, parse_qs, quote
@@ -223,12 +224,12 @@ def create_logic_app_tools(
 
     # 1. List workflows
     workflows = logic_app_tool.list_standard_logic_app_workflows(logic_app_name)
-    print("Workflows:", json.dumps(workflows, indent=2))
+    print("✅ Workflows:", json.dumps(workflows, indent=2))
 
     # Go through all the workflows and find the first with an HTTP trigger
     if not workflows:
-        print("No workflows found.")
-        exit(1)
+        print("❌ No workflows found. Deploy workflows using azd deploy.")
+        sys.exit(1)
 
     openapi_tools: list[OpenApiTool] = []
 
