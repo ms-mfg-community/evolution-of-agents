@@ -1,4 +1,5 @@
 import json
+import sys
 import requests
 from typing import Dict, Any
 from urllib.parse import urlparse, parse_qs, quote
@@ -228,7 +229,7 @@ def create_logic_app_tools(
     # Go through all the workflows and find the first with an HTTP trigger
     if not workflows:
         print("No workflows found.")
-        exit(1)
+        sys.exit(1)
 
     openapi_tools: list[OpenApiTool] = []
 
